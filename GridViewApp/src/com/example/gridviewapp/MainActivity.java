@@ -1,6 +1,7 @@
 package com.example.gridviewapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -10,7 +11,7 @@ import android.widget.GridView;
 
 public class MainActivity extends Activity {
 
-    @Override
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -21,9 +22,11 @@ public class MainActivity extends Activity {
        gridview.setOnItemClickListener(new OnItemClickListener() {
 
 		@Override
-		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-				long arg3) {
-			// TODO Auto-generated method stub
+		public void onItemClick(AdapterView<?> parent, View v, int position,
+				long id) {
+			Intent i = new Intent(MainActivity.this,SingleViewActivity.class);
+			i.putExtra("id", position);
+			startActivity(i);
 			
 		}
     	   
@@ -33,12 +36,11 @@ public class MainActivity extends Activity {
         
     }
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-    
 }
